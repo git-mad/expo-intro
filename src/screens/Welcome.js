@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Image, TextInput } from 'react-native';
 
 export default function Welcome({ navigation }) {
-    const [bckColor, setBckColor] = useState('#FFC866')
+    const [bckColor, setBckColor] = useState('')
     return (
         <View style={styles.container} backgroundColor={bckColor}>
             <Image style={styles.image} source={require("../../assets/react-native-logo.png")}/>
@@ -14,19 +14,11 @@ export default function Welcome({ navigation }) {
                     GO
                 </Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.button} onPress={() => 
-            {
-                if (bckColor == '#FFC866') {
-                    setBckColor('#FF7F7F')
-                } else {
-                    setBckColor('#FFC866')
-                }
-            }
-            }>
-                <Text style={styles.buttonText}>
-                    Change color
-                </Text>
-            </TouchableOpacity>
+            <TextInput
+        style={{height: 40}}
+        placeholder="Type hex here to change color!"
+        onChangeText={newText => setBckColor(newText)}
+      />
         </View>
     )
 }
